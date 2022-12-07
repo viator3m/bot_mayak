@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "bot-mayak"
+version = "0.1.0"
+description = ""
+authors = ["Vladimir Kamyshanov <viator3m@gmail.com>"]
+readme = "README.md"
+packages = [{include = "bot_mayak"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+python-telegram-bot = "^13.15"
+pandas = "^1.5.2"
+openpyxl = "^3.0.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
