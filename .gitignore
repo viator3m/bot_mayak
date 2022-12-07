@@ -133,3 +133,6 @@ dmypy.json
 
 # enviroment
 .env
+
+# directory with excel-files
+/files/

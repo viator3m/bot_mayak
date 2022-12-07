@@ -22,13 +22,6 @@ def start(update: Update, context: CallbackContext) -> None:
     )
 
 
-def gen_filename(ext: str) -> str:
-    base_dir = f'{os.path.dirname(os.path.abspath(__file__))}/files/'
-    pattern = base_dir + 'file_{}.{}'
-    stamp = str(int(time.time() * 1000))
-    return pattern.format(stamp, ext)
-
-
 def load_file(update: Update, context: CallbackContext) -> None:
     file_name, ext = update.effective_message.document.file_name.split('.')
     chat_id = update.effective_chat.id
@@ -36,14 +29,15 @@ def load_file(update: Update, context: CallbackContext) -> None:
         file_id = update.effective_message.document.file_id
         file_path = gen_filename(ext)
         context.bot.getFile(file_id).download(file_path)
-        data = [[chat_id].append(row) for row in read_file(file_path)]
+        data = [[chat_id] + row for row in read_file(file_path)]
 
         text = 'Прочитан файл:'
         for row in data:
+            _, name, url, xpath = row
             text += f"""
-            name: {row[0]}
-            url: {row[1]}
-            xpath: {row[2]}
+            name: {name}
+            url: {url}
+            xpath: {xpath}
             """
         insert(con, cur, data)
     else:
@@ -53,6 +47,13 @@ def load_file(update: Update, context: CallbackContext) -> None:
         chat_id=update.effective_chat.id,
         text=text,
     )
+
+
+def gen_filename(ext: str) -> str:
+    base_dir = f'{os.path.dirname(os.path.abspath(__file__))}/files/'
+    pattern = base_dir + 'file_{}.{}'
+    stamp = str(int(time.time() * 1000))
+    return pattern.format(stamp, ext)
 
 
 def read_file(file: str) -> list:

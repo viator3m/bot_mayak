@@ -8,6 +8,7 @@ def db_init():
     cur.executescript('''
         CREATE TABLE IF NOT EXISTS urls(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
+        chat_id INTEGER NOT NULL,
         name VARCHAR(100) NOT NULL,
         url VARCHAR(100) NOT NULL,
         xpath VARCHAR(100) NOT NULL
@@ -18,6 +19,6 @@ def db_init():
 
 
 def insert(con, cur, data):
-    cur.executemany('INSERT INTO urls VALUES(null, ?, ?, ?);', data)
+    cur.executemany('INSERT INTO urls VALUES(null,?, ?, ?, ?);', data)
     con.commit()
 
