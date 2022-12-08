@@ -40,4 +40,4 @@ poetry run python bot.py
 ```bash
 poetry self add poetry-dotenv
 ```
-В репозитории находится [файл](marketplaces.xlsx), который можно отправить боту для тестирования.
+В репозитории находится [файл](files/marketplaces.xlsx), который можно отправить боту для тестирования.
