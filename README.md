@@ -35,3 +35,9 @@ echo TOKEN=your_telegram_token >> .env
 ```bash
 poetry run python bot.py
 ```
+
+Если необходимо, то установить poetry-dotenv
+```bash
+poetry self add poetry-dotenv
+```
+В репозитории находится [файл](marketplaces.xlsx), который можно отправить боту для тестирования.
