@@ -81,6 +81,8 @@ def bot():
     """Основная функция работы бота."""
     token = os.environ['TOKEN']
     updater = Updater(token=token)
+    logger.info('Бот запущен')
+
     updater.dispatcher.add_handler(CommandHandler('start', start))
     updater.dispatcher.add_handler(MessageHandler(Filters.document, load_file))
 
